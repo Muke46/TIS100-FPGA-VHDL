@@ -13,10 +13,10 @@ entity ALU is
     );
 
     port(
-        i_a        : in  std_logic_vector(DATA_BITS-1 downto 0);
-        i_b        : in  std_logic_vector(DATA_BITS-1 downto 0);
+        i_a        : in  signed(DATA_BITS-1 downto 0);
+        i_b        : in  signed(DATA_BITS-1 downto 0);
         i_op       : in  std_logic_vector(1 downto 0);
-        o_out      : out std_logic_vector(DATA_BITS-1 downto 0)
+        o_out      : out signed(DATA_BITS-1 downto 0)
     );
 end ALU;
 
@@ -27,11 +27,11 @@ architecture arch of ALU is
             begin
                 case i_op is
                     when "00" => --ADD
-                        o_out <= std_logic_vector(signed(i_a) + signed(i_b));
+                        o_out <= signed(i_a) + signed(i_b);
                     when "01" => --SUB
-                        o_out <= std_logic_vector(signed(i_a) - signed(i_b));
+                        o_out <= signed(i_a) - signed(i_b);
                     when "10" => 
-                        o_out <= std_logic_vector(to_signed(0,11) - signed(i_a)); --thre is probably a better way
+                        o_out <= to_signed(0,11) - signed(i_a); --thre is probably a better way
                     when "11" =>
                         o_out <= i_b;
                     when others =>
