@@ -3,8 +3,8 @@ $ghdlPath = "D:\Programs\GHDL\bin\ghdl.exe"
 $GTKwavePath = "D:\Programs\gtkwave64\bin\gtkwave.exe"
 
 # Define program arguments
-$modulesFiles = "SRC_ADDR_DEC.vhd"
-$testbenchFile = "SRC_ADDR_DEC_tb.vhd"
+$modulesFiles = "ADDR_DEC.vhd"
+$testbenchFile = "ADDR_DEC_tb.vhd"
 $topModuleName = "testbench"
 
 # Run GHDL commands

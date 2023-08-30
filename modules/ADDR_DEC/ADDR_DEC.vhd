@@ -13,7 +13,7 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
 
-entity SRC_ADDR_DEC is
+entity ADDR_DEC is
     generic(
         ADDRESS_BITS  : integer := 3;
         OUTPUTS_N     : integer := 6
@@ -26,9 +26,9 @@ entity SRC_ADDR_DEC is
         o_control   : out unsigned(OUTPUTS_N-1 downto 0) := (others => '0')
     );
 
-end SRC_ADDR_DEC;
+end ADDR_DEC;
 
-architecture arch of SRC_ADDR_DEC is
+architecture arch of ADDR_DEC is
     signal address  : unsigned(ADDRESS_BITS-1 downto 0) := (others => '0');
     signal last     : unsigned(ADDRESS_BITS-1 downto 0) := (others => '0');
     begin

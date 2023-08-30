@@ -15,7 +15,7 @@ end entity testbench;
 architecture tb of testbench is
     -- DUT component
     
-    component SRC_ADDR_DEC is
+    component ADDR_DEC is
         port(
         clk         : in  std_logic;
         i_address   : in  unsigned(ADDRESS_BITS-1 downto 0);
@@ -29,7 +29,7 @@ architecture tb of testbench is
     signal clk, OutEn : std_logic := '0';
 
     begin
-        DUT: SRC_ADDR_DEC port map(clk, address_tb, OutEn, o_control);
+        DUT: ADDR_DEC port map(clk, address_tb, OutEn, o_control);
 
         process
         begin
