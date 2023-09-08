@@ -3,7 +3,9 @@
 --! 4 bits, counts up to 15, then resets to 0
 --! Has an input that overwrites the current counter, with an associated control pin
 --!
---! Notes: maybe should work on the clock negative edge?
+--! Notes:  maybe should work on the clock negative edge?
+--!
+--! TODO:   add an upper limit to PC if there are less than 15 instructions
 
 library ieee;
   use ieee.std_logic_1164.all;

@@ -35,16 +35,18 @@ end ACC;
 architecture arch of ACC is
     signal data    : signed(DATA_BITS-1 downto 0) := (others => '0');
     begin
-        process(clk)
+        data_in : process(clk)
             begin
                 if rising_edge(clk) then
                     data       <= i_dataIn when i_inEn  = '1' else data; --store data if enabled
-                    o_dataOut  <= data     when i_outEn = '1' else (others => 'Z'); --put data to bus if enabled
                 end if;
         end process;
 
-        process (data)
-            begin
+        data_out : process(all) begin
+            o_dataOut  <= data     when i_outEn = '1' else (others => 'Z'); --put data to bus if enabled
+        end process;
+
+        flags : process (data) begin
             o_flags(0) <= '1' when data =  signed(to_signed(0, DATA_BITS))  else '0'; -- ACC=0 flag
             o_flags(1) <= '1' when data /= signed(to_signed(0, DATA_BITS))  else '0'; -- ACC!=0 flag
             o_flags(2) <= '1' when data >  signed(to_signed(0, DATA_BITS))  else '0'; -- ACC>0 flag

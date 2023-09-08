@@ -24,11 +24,14 @@ end BKP;
 architecture arch of BKP is
     signal data    : signed(DATA_BITS-1 downto 0) := (others => '0');
     begin
-        process(clk)
-            begin
-                if rising_edge(clk) then
-                    data       <= i_dataIn when i_En  = '1' else data; --store data if enabled
-                    o_dataOut  <= data     when i_En  = '1' else (others => 'Z'); --put data to bus if enabled
-                end if;
+        data_in: process(clk) begin
+            if rising_edge(clk) then
+                data       <= i_dataIn when i_En  = '1' else data; --store data if enabled
+            end if;
         end process;
+
+        data_out: process(all) begin
+            o_dataOut  <= data     when i_En  = '1' else (others => 'Z'); --put data to bus if enabled
+        end process;
+
     end arch;

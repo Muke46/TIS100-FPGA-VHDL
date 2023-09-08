@@ -6,17 +6,17 @@ entity mem is
     generic(
         ADDR_BITS  : integer := 4;
         DATA_LINES : integer := 15;
-        DATA_BITS  : integer := 16
+        MEM_BITS  : integer := 16
     );
 
     port(
-        i_address  : in  std_logic_vector(ADDR_BITS-1 downto 0);
-        o_data     : out std_logic_vector(DATA_BITS-1 downto 0)  
+        i_address  : in  unsigned(ADDR_BITS-1 downto 0);
+        o_data     : out std_logic_vector(MEM_BITS-1 downto 0)  
     );
 end mem;
 
 architecture arch of mem is
-    type mem_array is array (DATA_LINES downto 0) of std_logic_vector(DATA_BITS - 1 downto 0);
+    type mem_array is array (DATA_LINES downto 0) of std_logic_vector(MEM_BITS - 1 downto 0);
     constant mem_data : mem_array := (
         0  => "0000000000000001",
         1  => "0000000000000010",
@@ -40,6 +40,6 @@ architecture arch of mem is
     begin
         process(all)
             begin
-                o_data <= mem_data(to_integer(unsigned(i_address)));
+                o_data <= mem_data(to_integer(i_address));
             end process;
     end arch;

@@ -21,16 +21,16 @@ entity ADDR_DEC is
 
     port(
         clk         : in  std_logic;
-        i_address   : in  unsigned(ADDRESS_BITS-1 downto 0);
+        i_address   : in  std_logic_vector(ADDRESS_BITS-1 downto 0);
         i_OutEn     : in  std_logic;
-        o_control   : out unsigned(OUTPUTS_N-1 downto 0) := (others => '0')
+        o_control   : out std_logic_vector(OUTPUTS_N-1 downto 0) := (others => '0')
     );
 
 end ADDR_DEC;
 
 architecture arch of ADDR_DEC is
-    signal address  : unsigned(ADDRESS_BITS-1 downto 0) := (others => '0');
-    signal last     : unsigned(ADDRESS_BITS-1 downto 0) := (others => '0');
+    signal address  : std_logic_vector(ADDRESS_BITS-1 downto 0) := (others => '0');
+    signal last     : std_logic_vector(ADDRESS_BITS-1 downto 0) := (others => '0');
     begin
         process(clk)
             begin
